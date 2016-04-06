@@ -32,8 +32,11 @@ def convert_passwd(passwd):
 key = convert_passwd(passwd)
 
 def encoding_file(file,key):
+    buffer_size = 2 ** 10
+    #read_buffer = bytearray(buffer_size)
+    #print os.path.getsize(file)
     try:
-        f = open(file,"r+b")
+        f = open(file,"r+b",buffering=buffer_size)
         i = 0
         kl = len(key)
         while True:
@@ -53,6 +56,8 @@ def encoding_file(file,key):
     finally:
         f.close()
     return
+
+#encoding_file("/Users/zmhu/bin/sfile/a/胡志明.JPG",key)
 
 def proccess_path (path,key):
     for d in os.listdir(path):
